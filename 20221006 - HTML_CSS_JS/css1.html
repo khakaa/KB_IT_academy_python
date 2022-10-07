@@ -1,0 +1,41 @@
+<!-- 인라인 스타일 : 가장 높은 우선순위 (가중치 : 100) -->
+
+<!-- 1) 태그 선택자. 가중치 1 -->
+<!-- p {color : red;} # 페이지 내 모든 <p> -->
+
+<!-- 2) 클래스 선택자. 가중치 10 -->
+<!-- .p {color : yellow;} # 페이지 내 class='p'인 모든 태그 -->
+
+<!-- 3) ID 선택자. 가중치 100 -->
+<!-- #p {color : blue;} # id='p'인 태그-->
+
+<!-- 4) 자식 선택자. -->
+<!-- 선택자1 > 선택자2 {color : cyan;} # 선택자 1을 부모로 가지는 선택자2-->
+
+<!-- 5) 자손 선택자. -->
+<!-- 선택자1 (공백) 선택자2 {color : pink;} # 선택자1을 조상(부모포함)으로 가지는 선택자2-->
+
+<!DOCTYPE html>
+<html lang="kr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      @media print {
+        .small {
+          display: none;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="big">
+      <h1>큰 제목</h1>
+    </div>
+    <div class="small">
+      <h1>작은 제목1</h1>
+    </div>
+  </body>
+</html>
