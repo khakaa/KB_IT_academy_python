@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <style>
+      #buttons {
+        width: 360px;
+        height: 360px;
+        border: 1px solid pink;
+      }
+
+      #buttons > button {
+        width: 35px;
+        height: 35px;
+      }
+    </style>
+    <title>숫자맞추기 for jq</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+    <script>
+      function add_buttons() {
+        var buttons = $("#buttons");
+        for (var i = 1; i <= 100; i++) {
+          buttons.append("<button>" + i + "</button>");
+        }
+      }
+      var com_num = Math.floor(Math.random() * 100) + 1;
+      $(function () {
+        add_buttons();
+        $("#buttons > button").click(function () {
+          $("#num").val(this.innerText);
+        });
+        //이벤트 등록
+        $("#check_num").click(function () {
+          //정답 확인
+          var num = $("#num").val();
+          var msg = "";
+          if (num == com_num) {
+            msg = "추카추카, 정답입니다";
+          } else if (num < com_num) {
+            msg = num + "점수 올려";
+          } else {
+            msg = num + "점수 내려";
+          }
+          $("num").val(""); // 입력숫자 삭제
+          // alert(msg)
+          //$("#msg").html(msg)     // 메시지 덮어쓰기
+          //$("#msg").append("<p>"+msg+"</p>") // 태그를 뒤에 추가하기
+
+          // 태그를 맨 앞 자식으로 추가하기
+          $("#msg").prepend("<p>" + msg + "</p>");
+        });
+      });
+    </script>
+  </head>
+  <body>
+    <h1>숫자맞추기 for jq</h1>
+    <p>1~100사이 숫자를 맞춰보세요</p>
+    <label>숫자입력 : </label>
+    <input type="number" id="num" />
+    <button id="check_num">정 답 확 인</button>
+    <div id="buttons"></div>
+    <div id="msg"></div>
+  </body>
+</html>

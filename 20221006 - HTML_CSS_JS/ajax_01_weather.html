@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <title>jQuery Intro</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+    <script>
+      function get_weather() {
+        $.ajax({
+          url: "weather.xml",
+          success: function (data) {
+            var ctg = $(data).find("category").text();
+            alert(ctg);
+          },
+        });
+      }
+    </script>
+  </head>
+
+  <body>
+    <button onclick="get_weather()">날씨</button>
+  </body>
+</html>

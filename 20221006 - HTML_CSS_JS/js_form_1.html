@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Form JS 1</title>
+    <script>
+      var com_num = 0;
+      com_num = Math.floor(Math.random() * 100) + 1;
+      window.onload = function () {};
+
+      // 메세지 출력
+      function show_msg(text) {
+        document.querySelector("#msg").innerHTML = text;
+      }
+
+      function append_msg(text) {
+        document.querySelector("#msg").innerHTML += text;
+      }
+
+      // 정답이랑 일치하는지 체크
+      function check_num() {
+        let msg = "";
+        let ok_snd = document.querySelector("#ok_snd");
+        let fail_snd = document.querySelector("#fail_snd");
+        let num = document.querySelector("#num");
+
+        if (num.value == com_num) {
+          append_msg(`${num.value} 추카추카 정답입니다<br>`);
+          ok_snd.play();
+        } else if (num.value < com_num) {
+          append_msg(`${num.value} 올려주세요<br>`);
+          fail_snd.play();
+        } else {
+          append_msg(`${num.value} 내려주세요<br>`);
+          fail_snd.play();
+        }
+        num.value = "";
+      }
+    </script>
+  </head>
+  <body>
+    <h1>숫자맞추기 게임</h1>
+    <p>컴퓨터가 임의로 정한 숫자를 가장 적은 횟수로 맞춰보세요</p>
+    <label>1~100사이 숫자 :</label><input id="num" />
+    <button onclick="check_num()">정답확인</button>
+    <h1 id="msg"></h1>
+    <audio id="ok_snd" src="ok.mp3"></audio>
+    <audio id="fail_snd" src="fail.mp3"></audio>
+  </body>
+</html>

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <title>jQuery Intro</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+    <script>
+      // var a = {} // JSON 객체
+      // var a = { 속성명1:"값1", 속성명2:값2 }
+
+      // var a = new Object()
+      // a.속성명1 = "값1"
+      // a.속성명2 = 값2
+
+      function get_weather() {
+        $.ajax({
+          url: "chosun_news_all.xml", //데이터 경로
+          success: function (data) {
+            //통신성공시 실행 함수,data는 서버에서 수신한 값
+            //수신한것이 XML이면 자동 객체변환,
+            //수신한것이 그외(html,txt)이면 문자열로 존재.
+            //var ctg = $(data).find("title").text()
+
+            //동네이름 추출,표시
+            //$("#msg").append( "<h3>"+ctg+"</h3>" ) //태그를 마지막 자식으로 추가
+            //시간대별(<data>) 온도,날씨,습도 추출, 표시
+            // <data>추출, 그 안에 있는 온도,날씨,습도 추출
+            var datas = $(data).find("item");
+            console.log(datas);
+            $("#msg").append("<p>갯수 : " + datas.length + "</p>");
+            for (var i = 0; i < datas.length; i++) {
+              var dt = $(datas[i]); //<data>를 순서대로 접근
+              var title = dt.find("title").text(); //0-오늘 1-내일 2-모레
+              // var description = dt.find("description").text()
+              var s = title; //+"의 내용\n"+description
+              $("#msg").append("<p>" + s + "</p>");
+            } //end for
+          },
+        });
+      }
+      $(function () {
+        // 페이지로딩후 자동실행함수
+        $("#weather_btn").click(function () {
+          get_weather(); // 함수선언이 먼저되어야함
+        });
+      });
+    </script>
+  </head>
+
+  <body>
+    <button id="weather_btn">조선일보 rss</button>
+
+    <div id="msg"></div>
+  </body>
+</html>

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script>
+      let n = 0;
+
+      function showCount() {
+        document.querySelector("#msg").innerHTML = "<b>" + n + "</b>";
+      }
+
+      function increase() {
+        n++;
+        showCount();
+      }
+
+      function decrease() {
+        n--;
+        showCount();
+      }
+
+      // 웹페이지 로딩완료시 자동 실행 함수 등록
+      // window.onload = function () {
+      //   document.querySelector("#dec").onclick = decrease;
+      // };
+      window.onload = showCount;
+
+      function fn_show_msg(text) {
+        document.querySelector("#msg").innerHTML = text;
+      }
+
+      function fn_img() {
+        let img = document.querySelector("#img1");
+        let src = img.getAttribute("src");
+        fn_show_msg(src);
+        img.setAttribute(
+          "src",
+          "https://imgnews.pstatic.net/image/upload/item/2018/11/27/175236270_PC_%25BF%25EC%25C3%25F8%25B9%25E8%25B3%25CA_%25B1%25B8%25B5%25B6%25C8%25B0%25BC%25BA%25C8%25AD.png"
+        );
+      }
+
+      let colorIndex = 0
+      let colors = ['red', 'blue']
+
+      function fn_change_color() {
+        let msg = document.querySelector('#msg')
+        msg.style.color = colors[colorIndex]
+        colorIndex ++
+        colorIndex %= 2
+      }
+    </script>
+  </head>
+    <button id="inc" onclick="increase()">증가</button>
+    <button id="dec" onclick="decrease()">감소</button>
+    <button onclick="fn_img()">이미지접근</button>
+    <button onclick="fn_change_color()">색 변경</button>
+    <h1 id="msg"></h1>
+    <img id='img1' src='https://imgnews.pstatic.net/image/upload/item/2018/08/29/183426027_%25BD%25C5%25B0%25ED%25B9%25E8%25B3%25CA.png'>
+  </body>
+</html>
