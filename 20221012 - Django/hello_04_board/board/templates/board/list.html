@@ -1,0 +1,19 @@
+{% comment %} brd_list로 넘어온 객체 {% endcomment %}
+{% for brd in brd_list %} 
+
+<hr>
+<div>
+    <div>
+        {{ brd.title }}
+    </div>
+    <blockquote>
+        {{ brd.content }}
+    </blockquote>
+    <div>
+        <a href="/blog/update/{{brd.id}}">수정</a>
+        <a href="/blog/delete/{{brd.id}}">삭제</a>
+    </div>
+</div>
+{% endfor %}
+
+<hr>
